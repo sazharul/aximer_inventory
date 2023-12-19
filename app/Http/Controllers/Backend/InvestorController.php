@@ -59,7 +59,6 @@ class InvestorController extends Controller
     public function show($id)
     {
         $supplier = Investor::findOrFail($id);
-
         return view('backend.investor.show', compact('investor'));
     }
 

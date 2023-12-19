@@ -32,12 +32,12 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li>
-                            <a href="{{ route('pending_order_list') }}">
-                                <i data-feather="archive"></i>
-                                <span>Orders</span>
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="{{ route('pending_order_list') }}">--}}
+{{--                                <i data-feather="archive"></i>--}}
+{{--                                <span>Orders</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li>
                             <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                href="javascript:void(0)">

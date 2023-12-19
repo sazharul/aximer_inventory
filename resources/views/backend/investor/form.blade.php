@@ -25,7 +25,7 @@
 </div>
 <div class="form-group {{ $errors->has('per_percentage') ? 'has-error' : ''}}">
     <label for="per_percentage" class="control-label">{{ 'Current Rate Per Percentage' }}</label>
-    <input class="form-control" name="per_percentage" type="integer" id="per_percentage" value="{{ isset($investor->per_percentage) ? $investor->per_percentage : ''}}" >
+    <input class="form-control" name="per_percentage" type="number" id="per_percentage" value="{{ isset($investor->per_percentage) ? $investor->per_percentage : ''}}" >
     {!! $errors->first('per_percentage', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">

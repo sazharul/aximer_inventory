@@ -66,10 +66,12 @@
         #container {
             margin: 20px auto;
         }
+
         .ck-editor__editable[role="textbox"] {
             /* editing area */
             min-height: 500px;
         }
+
         .ck-content .image {
             /* block images */
             max-width: 80%;
@@ -199,10 +201,10 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#description' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 
 @yield('js')
@@ -213,7 +215,7 @@
             let price = $('#price').val();
             let discount_price = $(this).val();
 
-            let discount_percentage = (discount_price/price)*100;
+            let discount_percentage = (discount_price / price) * 100;
             $('#discount_percentage').val(discount_percentage);
         });
 
@@ -221,25 +223,25 @@
             let price = $('#price').val();
             let discount_percentage = $(this).val();
 
-            let discount_price = (discount_percentage/100)*price;
+            let discount_price = (discount_percentage / 100) * price;
             $('#discount_price').val(discount_price);
         });
 
         $('.discount_price').keyup(function () {
             let id = $(this).data('price');
-            let price = $('#price'+id).val();
+            let price = $('#price' + id).val();
             let discount_price = $(this).val();
-            let discount_percentage = (discount_price/price)*100;
-            $('#discount_percentage'+id).val(discount_percentage);
+            let discount_percentage = (discount_price / price) * 100;
+            $('#discount_percentage' + id).val(discount_percentage);
         });
 
         $('.discount_percentage').keyup(function () {
             let id = $(this).data('percentage');
-            let price = $('#price'+id).val();
+            let price = $('#price' + id).val();
             let discount_percentage = $(this).val();
 
-            let discount_price = (discount_percentage/100)*price;
-            $('#discount_price'+id).val(discount_price);
+            let discount_price = (discount_percentage / 100) * price;
+            $('#discount_price' + id).val(discount_price);
         });
     });
 </script>
