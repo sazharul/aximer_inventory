@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('contact_person')->nullable();
             $table->string('origin')->nullable();
+            $table->string('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

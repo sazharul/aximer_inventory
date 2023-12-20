@@ -19,6 +19,8 @@ class CustomersController extends Controller
         if (!empty($keyword)) {
             $customer = Customer::where('customer_name', 'LIKE', "%$keyword%")
                 ->orWhere('phone_number', 'LIKE', "%$keyword%")
+                ->orWhere('email', 'LIKE', "%$keyword%")
+                ->orWhere('contact_person', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $customer = Customer::latest()->paginate($perPage);
@@ -41,14 +43,14 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer_name' => 'required|string',
+            'name' => 'required|string',
             'phone_number' => ['required'],
             'email' => 'required|string|email',
             'address' => 'required',
             'contact_person' => 'required',
             'origin' => 'required',
         ]);
-        
+
         $requestData = $request->all();
 
         Customer::create($requestData);

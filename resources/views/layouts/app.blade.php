@@ -10,8 +10,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
-    <title>MediSource - Dashboard</title>
-
+    <title>{{ config('app.name', 'Laravel') }} - Dashboard</title>
     <!-- Google font-->
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
@@ -198,14 +197,14 @@
 <!-- Theme js -->
 <script src="{{ asset('assets/js/script.js') }}"></script>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#description'))
-        .catch(error => {
-            console.error(error);
-        });
-</script>
+{{--<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>--}}
+{{--<script>--}}
+{{--    ClassicEditor--}}
+{{--        .create(document.querySelector('#description'))--}}
+{{--        .catch(error => {--}}
+{{--            console.error(error);--}}
+{{--        });--}}
+{{--</script>--}}
 
 @yield('js')
 

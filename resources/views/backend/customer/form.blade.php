@@ -1,7 +1,7 @@
-<div class="form-group {{ $errors->has('customer_name') ? 'has-error' : ''}}">
-    <label for="customer_name" class="control-label">{{ 'Customer Name' }}</label>
-    <input class="form-control" name="customer_name" type="text" id="customer_name" value="{{ isset($customer->customer_name) ? $customer->customer_name : ''}}" >
-    {!! $errors->first('customer_name', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+    <label for="name" class="control-label">{{ 'Customer Name' }}</label>
+    <input class="form-control" name="name" type="text" id="name" value="{{ isset($customer->name) ? $customer->name : ''}}" >
+    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('phone_number') ? 'has-error' : ''}}">
     <label for="phone_number" class="control-label">{{ 'Phone Number' }}</label>
@@ -28,6 +28,16 @@
     <input class="form-control" name="origin" type="text" id="origin" value="{{ isset($customer->origin) ? $customer->origin : ''}}" >
     {!! $errors->first('origin', '<p class="help-block">:message</p>') !!}
 </div>
+
+<div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+    <label for="status" class="control-label">{{ 'Status *' }}</label>
+    <select class="form-control" name="status">
+        <option value="1" {{ (isset($product->status) && $product->status == 1) ? 'selected' : '' }}>Active</option>
+        <option value="0" {{ (isset($product->status) && $product->status == 0) ? 'selected' : '' }}>InActive</option>
+    </select>
+    {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>

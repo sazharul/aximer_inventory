@@ -36,12 +36,12 @@
                         </a>
                     </li>
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('slider.index')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Slider</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('slider.index')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Slider</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('customer.index')}}">
                             <i class="ri-store-3-line"></i>
@@ -73,9 +73,9 @@
                             <li>
                                 <a href="{{ route('category.index') }}">Categories</a>
                             </li>
-{{--                            <li>--}}
-{{--                                <a href="{{ route('company.index') }}">Company</a>--}}
-{{--                            </li>--}}
+                            {{--                            <li>--}}
+                            {{--                                <a href="{{ route('company.index') }}">Company</a>--}}
+                            {{--                            </li>--}}
                         </ul>
                     </li>
                     <li class="sidebar-list">
@@ -85,92 +85,108 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="{{route('purchase_lists')}}">Add Purchase</a>
+                                <a href="{{ route('purchase.index') }}">Manage Purchase</a>
                             </li>
                             <li>
-                                <a href="#">Purchase Invoice</a>
+                                <a href="{{ route('purchase-invoice.index') }}">Purchase Invoice</a>
                             </li>
 
                         </ul>
                     </li>
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('district.index')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>District</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-store-3-line"></i>
+                            <span>Sale</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{ route('sale.index') }}">Manage Sale</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('sale-invoice.index') }}">Sale Invoice</a>
+                            </li>
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('area.index')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Area</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                        </ul>
+                    </li>
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('flash_sale')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Flash Sale</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('district.index')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>District</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Orders</span>--}}
-{{--                        </a>--}}
-{{--                        <ul class="sidebar-submenu">--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('pending_order_list') }}">Pending Order</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('approved_order_list') }}">Approved Order</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('delivered_order_list') }}">Delivered Order</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('cancel_order_list') }}">Cancel Order</a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('area.index')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Area</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('delivery_invoice')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Delivery Invoice</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('flash_sale')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Flash Sale</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('sold_product')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Sold product</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Orders</span>--}}
+                    {{--                        </a>--}}
+                    {{--                        <ul class="sidebar-submenu">--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('pending_order_list') }}">Pending Order</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('approved_order_list') }}">Approved Order</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('delivered_order_list') }}">Delivered Order</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('cancel_order_list') }}">Cancel Order</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('privacy-policy.index')}}">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>Privacy Policy</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('delivery_invoice')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Delivery Invoice</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
 
-{{--                    <li class="sidebar-list">--}}
-{{--                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">--}}
-{{--                            <i class="ri-store-3-line"></i>--}}
-{{--                            <span>User List</span>--}}
-{{--                        </a>--}}
-{{--                        <ul class="sidebar-submenu">--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('user_list') }}">Pending User</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="{{ route('approved_user_list') }}">Approved User</a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('sold_product')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Sold product</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('privacy-policy.index')}}">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>Privacy Policy</span>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+
+                    {{--                    <li class="sidebar-list">--}}
+                    {{--                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">--}}
+                    {{--                            <i class="ri-store-3-line"></i>--}}
+                    {{--                            <span>User List</span>--}}
+                    {{--                        </a>--}}
+                    {{--                        <ul class="sidebar-submenu">--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('user_list') }}">Pending User</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="{{ route('approved_user_list') }}">Approved User</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
 
                 </ul>
             </div>

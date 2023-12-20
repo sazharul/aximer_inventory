@@ -5,3 +5,7 @@ php artisan crud:generate Vehicle --fields="model#string#required; vehicle_numbe
 
 php artisan crud:generate PrivacyPolicy --fields="description#file#required" --view-path=backend --controller-namespace="Backend"
 php artisan crud:generate Registration --fields="name#text#required; mobile#text#required; email#text#required; department#text#required; batch#text#required" --view-path=backend --controller-namespace="Backend"
+
+
+php artisan crud:generate Purchase --fields="purchase_id#string#required; total#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"
+php artisan crud:generate PurchaseInvoice --fields="purchase_id#string#required; date#string#required; payment_type#string#required; total#string#required; paid#string#required; due#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"

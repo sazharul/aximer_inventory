@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backend\PurchaseInvoiceController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleInvoiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -44,6 +47,16 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::resource('purchase', PurchaseController::class);
+    Route::resource('purchase-invoice', PurchaseInvoiceController::class);
+    Route::get('get-single-product/{id}', [ProductController::class, 'get_single_product']);
+    Route::get('get-single-purchase-details/{id}', [PurchaseController::class, 'get_single_purchase']);
+
+    Route::resource('sale', SaleController::class);
+    Route::resource('sale-invoice', SaleInvoiceController::class);
+    Route::get('get-single-sale-details/{id}', [SaleController::class, 'get_single_sale']);
+
     Route::resource('category', CategoryController::class);
     Route::resource('customer', CustomersController::class);
     Route::resource('supplier', SupplierController::class);
@@ -54,7 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('area', AreaController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('privacy-policy', PrivacyPolicyController::class);
-  
+
+
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
     Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');
     Route::get('cancel-order-list', [OrderController::class, 'cancel_order_list'])->name('cancel_order_list');
@@ -83,8 +97,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('pending-user-list', [HomeController::class, 'user_list'])->name('user_list');
     Route::get('approved-user-list', [HomeController::class, 'approved_user_list'])->name('approved_user_list');
     Route::get('approved-user/{id}', [HomeController::class, 'approved_user'])->name('approved_user');
-    Route::get('purchase', [PurchaseController::class, 'index'])->name('purchase_lists');
-    Route::get('create_purchase', [PurchaseController::class, 'create'])->name('create_purchase');
-  
-
 });

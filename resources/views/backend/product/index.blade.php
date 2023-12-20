@@ -35,6 +35,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Product Image</th>
                                         <th>Product Code</th>
                                         <th>Product Name</th>
                                         <th>Product Category</th>
@@ -43,7 +44,6 @@
                                         <th>Product Color</th>
 
 
-                                        <th>Product Image</th>
                                         <th>Product Size</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -53,6 +53,10 @@
                                     @foreach ($product as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <img style="width: 120px; max-height: 60px; height: auto;"
+                                                     src="{{ asset($item->image) }}" alt="">
+                                            </td>
                                             <td>{{ $item->code }} </td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->category_name }}</td>
@@ -64,11 +68,6 @@
 
                                             </td>
                                             <td>{{ $item->product_color }} </td>
-
-                                            <td>
-                                                <img style="width: 120px; max-height: 60px; height: auto;"
-                                                     src="{{ asset($item->image) }}" alt="">
-                                            </td>
 
                                             <td>{{ $item->product_size }} </td>
 

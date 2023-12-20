@@ -17,8 +17,9 @@ class SupplierController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $supplier = Supplier::where('customer_name', 'LIKE', "%$keyword%")
+            $supplier = Supplier::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('phone_number', 'LIKE', "%$keyword%")
+                ->orWhere('email', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $supplier = Supplier::latest()->paginate($perPage);
@@ -48,9 +49,8 @@ class SupplierController extends Controller
             'contact_person' => 'required',
             'origin' => 'required',
         ]);
-        
-        $requestData = $request->all();
 
+        $requestData = $request->all();
         Supplier::create($requestData);
 
         return redirect('supplier')->with('flash_message', 'Supplier added!');
@@ -59,7 +59,7 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
         $supplier = Supplier::findOrFail($id);
 
@@ -98,5 +98,5 @@ class SupplierController extends Controller
 
         return redirect('supplier')->with('flash_message', 'Supplier deleted!');
     }
-   
+
 }

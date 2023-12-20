@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Response;
 use Str;
 
 class ProductController extends Controller
@@ -17,6 +18,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    public function get_single_product($id)
+    {
+        $product = Product::where('id', $id)->first();
+        return Response::json($product);
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -40,11 +47,11 @@ class ProductController extends Controller
                 'products.product_color',
                 'products.product_size',
                 'categories.name as category_name',
-                'suppliers.supplier_name as supplier_name',
+                'suppliers.name as supplier_name',
                 'products.status'
             )
             ->where(function ($query) use ($keyword) {
-                if (isset($keyword)){
+                if (isset($keyword)) {
                     $query->where('products.name', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('categories.name', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('suppliers.supplier_name', 'LIKE', '%' . $keyword . '%')
