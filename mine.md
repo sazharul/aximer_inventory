@@ -9,3 +9,6 @@ php artisan crud:generate Registration --fields="name#text#required; mobile#text
 
 php artisan crud:generate Purchase --fields="purchase_id#string#required; total#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"
 php artisan crud:generate PurchaseInvoice --fields="purchase_id#string#required; date#string#required; payment_type#string#required; total#string#required; paid#string#required; due#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"
+
+php artisan crud:generate ExpenseCategory --fields="name#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"
+php artisan crud:generate Expense --fields="category_id#string#required; amount#string#required; note#text#required; status#string#required" --view-path=backend --controller-namespace="Backend"

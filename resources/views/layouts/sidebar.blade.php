@@ -110,6 +110,22 @@
                         </ul>
                     </li>
 
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-store-3-line"></i>
+                            <span>Expense</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{ route('expense-category.index') }}">Expense Category</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('expense.index') }}">Expense</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     {{--                    <li class="sidebar-list">--}}
                     {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('district.index')}}">--}}
                     {{--                            <i class="ri-store-3-line"></i>--}}

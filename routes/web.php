@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\ExpenseCategoryController;
+use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PurchaseInvoiceController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleInvoiceController;
@@ -67,6 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('area', AreaController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('privacy-policy', PrivacyPolicyController::class);
+    Route::resource('expense-category', ExpenseCategoryController::class);
+    Route::resource('expense', ExpenseController::class);
 
 
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
