@@ -12,3 +12,5 @@ php artisan crud:generate PurchaseInvoice --fields="purchase_id#string#required;
 
 php artisan crud:generate ExpenseCategory --fields="name#string#required; status#string#required" --view-path=backend --controller-namespace="Backend"
 php artisan crud:generate Expense --fields="category_id#string#required; amount#string#required; note#text#required; status#string#required" --view-path=backend --controller-namespace="Backend"
+
+php artisan crud:generate Stock --fields="product_id#string#required; purchase_id#string#required; purchase_no#string#required; qty#text#required;" --view-path=backend --controller-namespace="Backend"

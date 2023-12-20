@@ -80,10 +80,20 @@
                                             <td>Total Amount</td>
                                             <td class="textAlignRight"><b class="grand_total">{{ $saleinvoice->total }}</b></td>
                                         </tr>
+
+                                        <tr>
+                                            <td>Discount Amount</td>
+                                            <td>
+                                                <input min="1" required style="width: 150px;" class="form-control textAlignRight discount_amount"
+                                                       onkeyup="PaidAmount(this)" name="discount_amount" type="number" value="{{ $saleinvoice->discount }}">
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td>
-                                                <input min="1" required style="width: 150px;" max="{{ $saleinvoice->total }}" value="{{ $saleinvoice->paid }}" class="form-control textAlignRight paid_amount"
+                                                <input min="1" required style="width: 150px;" max="{{ $saleinvoice->total }}" value="{{ $saleinvoice->paid }}"
+                                                       class="form-control textAlignRight paid_amount"
                                                        onkeyup="PaidAmount(this)" name="paid_amount" type="number">
                                             </td>
                                         </tr>
@@ -93,7 +103,9 @@
                                             <td>
                                                 <select class="form-control" name="payment_type" required>
                                                     <option value="Cash" {{ $saleinvoice->payment_type === 'Cash' ? 'selected' : '' }}>Cash</option>
-                                                    <option value="Bank Transfer" {{ $saleinvoice->payment_type === 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
+                                                    <option value="Bank Transfer" {{ $saleinvoice->payment_type === 'Bank Transfer' ? 'selected' : '' }}>Bank
+                                                        Transfer
+                                                    </option>
                                                 </select>
                                             </td>
                                         </tr>

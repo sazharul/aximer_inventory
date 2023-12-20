@@ -85,6 +85,15 @@
                                             <td>Total Amount</td>
                                             <td class="textAlignRight"><b class="grand_total">0.00</b></td>
                                         </tr>
+
+                                        <tr>
+                                            <td>Discount Amount</td>
+                                            <td>
+                                                <input min="1" required style="width: 150px;" class="form-control textAlignRight discount_amount"
+                                                       onkeyup="PaidAmount(this)" name="discount_amount" type="number">
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td>

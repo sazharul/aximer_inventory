@@ -64,7 +64,8 @@ class SaleInvoiceController extends Controller
             'payment_type' => $request->payment_type,
             'total' => $find_sale->total,
             'paid' => $request->paid_amount,
-            'due' => $find_sale->total - $request->paid_amount,
+            'discount' => $request->discount_amount,
+            'due' => $find_sale->total - $request->discount_amount - $request->paid_amount,
         ]);
 
         foreach ($find_sale->saleDetails as $item) {
@@ -126,7 +127,8 @@ class SaleInvoiceController extends Controller
 
         $saleinvoice->update([
             'paid' => $request->paid_amount,
-            'due' => $saleinvoice->total - $request->paid_amount
+            'discount' => $request->discount_amount,
+            'due' => $saleinvoice->total - $request->discount_amount - $request->paid_amount,
         ]);
 
         return redirect('sale-invoice')->with('flash_message', 'SaleInvoice updated!');

@@ -42,7 +42,7 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'supplier_name' => 'required|string',
+            'name' => 'required|string',
             'phone_number' => ['required'],
             'email' => 'required|string|email',
             'address' => 'required',

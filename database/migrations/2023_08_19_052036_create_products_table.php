@@ -18,10 +18,16 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('category_id');
             $table->string('company_id');
+            $table->integer('supplier_id')->nullable();
             $table->string('price');
+            $table->string('stock')->nullable();
             $table->string('discount_price')->nullable();
             $table->string('discount_percentage')->nullable();
             $table->string('is_flash_sale')->default(0)->nullable();
+            $table->string('code')->nullable();
+            $table->string('product_color')->nullable();
+            $table->string('product_size')->nullable();
+            $table->string('origin')->nullable();
             $table->string('status')->default(1)->nullable();
             $table->timestamps();
         });

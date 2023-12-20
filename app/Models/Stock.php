@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaleInvoice extends Model
+class Stock extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'sale_invoices';
+    protected $table = 'stocks';
 
     /**
      * The database primary key value.
@@ -26,10 +25,18 @@ class SaleInvoice extends Model
      *
      * @var array
      */
-    protected $fillable = ['sale_id', 'sale_no', 'date', 'payment_type', 'total', 'discount', 'paid', 'due', 'status'];
+    protected $fillable = [
+        'product_id',
+        'purchase_id',
+        'purchase_no',
+        'qty',
+        'date'
+    ];
 
-    public function saleInvoiceDetails()
+
+    public function product()
     {
-        return $this->hasMany(SaleInvoiceDetail::class, 'sale_invoices_id', 'id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
 }

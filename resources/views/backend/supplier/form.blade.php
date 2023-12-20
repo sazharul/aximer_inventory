@@ -32,8 +32,8 @@
 <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
     <label for="status" class="control-label">{{ 'Status *' }}</label>
     <select class="form-control" name="status">
-        <option value="1" {{ (isset($product->status) && $product->status == 1) ? 'selected' : '' }}>Active</option>
-        <option value="0" {{ (isset($product->status) && $product->status == 0) ? 'selected' : '' }}>InActive</option>
+        <option value="1" {{ (isset($supplier->status) && $supplier->status == 1) ? 'selected' : '' }}>Active</option>
+        <option value="0" {{ (isset($supplier->status) && $supplier->status == 0) ? 'selected' : '' }}>InActive</option>
     </select>
     {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
 </div>

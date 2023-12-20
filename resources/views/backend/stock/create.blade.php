@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div class="card-header">Create New Supplier</div>
+                    <div class="card-header">Create New Stock</div>
                     <div class="card-body">
-                        <a href="{{ url('/supplier') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/stock') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,10 +19,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/supplier') }}" accept-charset="UTF-8" class="form-horizontal" >
+                        <form method="POST" action="{{ url('/stock') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('backend.supplier.form', ['formMode' => 'create'])
+                            @include ('backend.stock.form', ['formMode' => 'create'])
 
                         </form>
 

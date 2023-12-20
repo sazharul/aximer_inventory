@@ -29,13 +29,18 @@ class Product extends Model
         'image',
         'name',
         'category_id',
-        'code',
+        'company_id',
+        'supplier_id',
         'price',
-        'origin',
+        'stock',
+        'discount_price',
+        'discount_percentage',
+        'is_flash_sale',
+        'code',
         'product_color',
         'product_size',
-        'supplier_id',
-        'status'
+        'origin',
+        'status',
     ];
 
     public function category()

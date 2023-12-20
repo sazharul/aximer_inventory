@@ -54,7 +54,7 @@ class ProductController extends Controller
                 if (isset($keyword)) {
                     $query->where('products.name', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('categories.name', 'LIKE', '%' . $keyword . '%')
-                        ->orWhere('suppliers.supplier_name', 'LIKE', '%' . $keyword . '%')
+                        ->orWhere('suppliers.name', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('products.price', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('products.code', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('products.product_color', 'LIKE', '%' . $keyword . '%');
@@ -84,6 +84,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required',
+            'name' => ['required'],
+            'category_id' => 'required',
+            'code' => 'required',
+        ]);
 
         $requestData = $request->all();
         if ($request->hasFile('image')) {

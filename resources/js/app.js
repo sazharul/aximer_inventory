@@ -109,7 +109,8 @@ window.calculateTotalPrice = function (e) {
 }
 window.PaidAmount = function (e) {
     var total_amount = $('.grand_total').html();
-    var paid_amount = $('.paid_amount').val();
+    var paid_amount = $('.paid_amount').val() || 0;
+    var discount_amount = $('.discount_amount').val() || 0;
 
-    $('.due_amount').html(parseInt(total_amount) - parseInt(paid_amount));
+    $('.due_amount').html(parseInt(total_amount) - parseInt(discount_amount) - parseInt(paid_amount));
 }

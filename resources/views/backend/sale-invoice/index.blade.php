@@ -34,6 +34,7 @@
                                         <th>Date</th>
                                         <th>Payment Type</th>
                                         <th>Total</th>
+                                        <th>Discount</th>
                                         <th>Paid</th>
                                         <th>Due</th>
                                         <th>Actions</th>
@@ -47,6 +48,7 @@
                                             <td>{{ $item->date }}</td>
                                             <td>{{ $item->payment_type }}</td>
                                             <td>{{ $item->total }}</td>
+                                            <td>{{ $item->discount }}</td>
                                             <td>{{ $item->paid }}</td>
                                             <td>{{ $item->due }}</td>
                                             <td>

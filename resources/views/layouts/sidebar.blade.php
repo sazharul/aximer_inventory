@@ -48,12 +48,14 @@
                             <span>Customer</span>
                         </a>
                     </li>
+
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('supplier.index')}}">
                             <i class="ri-store-3-line"></i>
                             <span>Supplier</span>
                         </a>
                     </li>
+
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{route('investor.index')}}">
                             <i class="ri-store-3-line"></i>
@@ -125,6 +127,38 @@
 
                         </ul>
                     </li>
+
+
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-store-3-line"></i>
+                            <span>Stock</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{ route('stock.index') }}">Manage Stock</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('product_stock') }}">Stock Report</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-store-3-line"></i>
+                            <span>Report</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('expense_report') }}">Expense Report</a></li>
+                            <li><a href="{{ route('stock.index') }}">Customer Outstanding</a></li>
+                            <li><a href="{{ route('stock.index') }}">Profit & Lose</a></li>
+                            <li><a href="{{ route('stock.index') }}">Supplier Statement</a></li>
+                            <li><a href="{{ route('stock.index') }}">Purchase Report</a></li>
+                        </ul>
+                    </li>
+
 
                     {{--                    <li class="sidebar-list">--}}
                     {{--                        <a class="sidebar-link sidebar-title link-nav" href="{{route('district.index')}}">--}}

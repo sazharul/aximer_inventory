@@ -3,8 +3,11 @@
 use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PurchaseInvoiceController;
+use App\Http\Controllers\Backend\StockController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleInvoiceController;
+use App\Http\Controllers\StockReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -71,7 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('privacy-policy', PrivacyPolicyController::class);
     Route::resource('expense-category', ExpenseCategoryController::class);
     Route::resource('expense', ExpenseController::class);
+    Route::resource('stock', StockController::class);
 
+    Route::get('stock-report', [StockReportController::class, 'stock_report'])->name('product_stock');
+    Route::get('expense-report', [ReportController::class, 'expense_report'])->name('expense_report');
 
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
     Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');
