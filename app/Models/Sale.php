@@ -26,11 +26,21 @@ class Sale extends Model
      *
      * @var array
      */
-    protected $fillable = ['sale_id', 'supplier_name', 'total', 'status'];
+    protected $fillable = ['sale_id', 'customer_id', 'total', 'status'];
 
 
     public function saleDetails()
     {
         return $this->hasMany(SaleDetail::class, 'sale_id', 'id');
+    }
+
+    public function customerDetails()
+    {
+        return $this->hasOne(Customer::class, 'id', 'customer_id');
+    }
+
+    public function saleInvoice()
+    {
+        return $this->hasOne(SaleInvoice::class, 'sale_id', 'id');
     }
 }

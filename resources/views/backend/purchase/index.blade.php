@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->purchase_id }}</td>
-                                            <td>{{ $item->supplier_name }}</td>
+                                            <td>{{ (isset($item->supplierDetails)) ? $item->supplierDetails->name : '' }}</td>
                                             <td>{{ $item->total }}</td>
 {{--                                            <td>{{ $item->status }}</td>--}}
                                             <td>

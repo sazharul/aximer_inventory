@@ -152,10 +152,10 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('expense_report') }}">Expense Report</a></li>
-                            <li><a href="{{ route('stock.index') }}">Customer Outstanding</a></li>
-                            <li><a href="{{ route('stock.index') }}">Profit & Lose</a></li>
-                            <li><a href="{{ route('stock.index') }}">Supplier Statement</a></li>
-                            <li><a href="{{ route('stock.index') }}">Purchase Report</a></li>
+                            <li><a href="{{ route('customer_outstanding_report') }}">Customer Outstanding</a></li>
+                            <li><a href="#">Profit & Lose</a></li>
+                            <li><a href="#">Supplier Statement</a></li>
+                            <li><a href="#">Purchase Report</a></li>
                         </ul>
                     </li>
 

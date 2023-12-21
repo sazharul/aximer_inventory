@@ -15,7 +15,7 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
             $table->string('purchase_id');
-            $table->string('supplier_name');
+            $table->string('supplier_id');
             $table->string('total');
             $table->string('status');
             $table->timestamps();

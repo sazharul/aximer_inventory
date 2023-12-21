@@ -14,18 +14,41 @@ class SaleInvoiceController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    public function pay_sale_due(Request $request, $id)
+    {
+        $pay = $request->payment_amount;
+        $find_sale_invoice = SaleInvoice::where('id', $id)->first();
+
+        if (isset($find_sale_invoice)) {
+            $find_sale_invoice->update([
+                'paid' => $find_sale_invoice->paid + $pay,
+                'due' => $find_sale_invoice->due - $pay
+            ]);
+        }
+
+        return redirect('sale-invoice')->with('flash_message', 'Paid Successfully');
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $saleinvoice = SaleInvoice::where('sale_no', 'LIKE', "%$keyword%")
+            $saleinvoice = SaleInvoice::with('customerDetails')
+                ->where('sale_no', 'LIKE', "%$keyword%")
                 ->orWhere('date', 'LIKE', "%$keyword%")
                 ->orWhere('payment_type', 'LIKE', "%$keyword%")
                 ->orWhere('total', 'LIKE', "%$keyword%")
+                ->orWhere('discount', 'LIKE', "%$keyword%")
                 ->orWhere('paid', 'LIKE', "%$keyword%")
                 ->orWhere('due', 'LIKE', "%$keyword%")
+                ->orWhereHas('customerDetails', function ($query) use ($keyword) {
+                    if (isset($keyword)) {
+                        $query->where('name', 'LIKE', "%$keyword%");
+                    }
+                })
                 ->latest()->paginate($perPage);
         } else {
             $saleinvoice = SaleInvoice::latest()->paginate($perPage);

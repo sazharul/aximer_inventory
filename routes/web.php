@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('sale', SaleController::class);
     Route::resource('sale-invoice', SaleInvoiceController::class);
+    Route::post('pay_sale_due/{id}', [SaleInvoiceController::class, 'pay_sale_due'])->name('pay_sale_due');
     Route::get('get-single-sale-details/{id}', [SaleController::class, 'get_single_sale']);
 
     Route::resource('category', CategoryController::class);
@@ -78,6 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('stock-report', [StockReportController::class, 'stock_report'])->name('product_stock');
     Route::get('expense-report', [ReportController::class, 'expense_report'])->name('expense_report');
+    Route::get('customer-outstanding-report', [ReportController::class, 'customer_outstanding_report'])->name('customer_outstanding_report');
 
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
     Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');

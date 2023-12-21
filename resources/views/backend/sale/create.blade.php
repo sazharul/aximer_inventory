@@ -32,10 +32,10 @@
                                 <div class="col-sm-6 col-12">
                                     <div class="form-group {{ $errors->has('supplier_id') ? 'has-error' : ''}}">
                                         <label for="supplier_id" class="control-label">{{ 'Customer' }}</label>
-                                        <select class="form-control js-example-basic-single" name="supplier_name" required>
+                                        <select class="form-control js-example-basic-single" name="supplier_id" required>
                                             <option value="">Select Customer</option>
                                             @foreach($supplier as $item)
-                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

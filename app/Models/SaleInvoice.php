@@ -32,4 +32,10 @@ class SaleInvoice extends Model
     {
         return $this->hasMany(SaleInvoiceDetail::class, 'sale_invoices_id', 'id');
     }
+
+    public function customerDetails()
+    {
+        return $this->hasOneThrough(Customer::class, Sale::class, 'id', 'id', 'sale_id', 'customer_id');
+        //return $this->hasMany(SaleInvoiceDetail::class, 'sale_invoices_id', 'id');
+    }
 }

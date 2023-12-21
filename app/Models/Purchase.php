@@ -25,11 +25,16 @@ class Purchase extends Model
      *
      * @var array
      */
-    protected $fillable = ['purchase_id', 'supplier_name', 'total', 'status'];
+    protected $fillable = ['purchase_id', 'supplier_id', 'total', 'status'];
 
 
     public function purchaseDetails()
     {
         return $this->hasMany(PurchaseDetails::class, 'purchase_id', 'id');
+    }
+
+    public function supplierDetails()
+    {
+        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
     }
 }

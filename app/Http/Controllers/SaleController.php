@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use App\Models\SaleInvoice;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Response;
@@ -62,10 +63,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $requestData = $request->except('_token');
-
         $str = Sale::orderBy('id', 'desc')->first();
         if (isset($str)) {
             $str = $str->sale_id + 1;
@@ -73,8 +71,10 @@ class SaleController extends Controller
             $str = date('y') . date('m') . str_pad(1, 4, "0", STR_PAD_LEFT);
         }
 
+        $find_customer = Customer::where('id', $request->supplier_id)->first();
+
         $requestData['sale_id'] = $str;
-        $requestData['supplier_name'] = $request->supplier_name;
+        $requestData['customer_id'] = $find_customer->id;
 
         $grand_total = 0;
         $l = 0;
@@ -147,7 +147,7 @@ class SaleController extends Controller
 
         $requestData = $request->all();
 
-        $requestData['supplier_name'] = $request->supplier_name;
+        $requestData['customer_id'] = $request->customer_id;
 
         $grand_total = 0;
         $l = 0;

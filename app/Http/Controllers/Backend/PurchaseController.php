@@ -76,7 +76,7 @@ class PurchaseController extends Controller
         }
 
         $requestData['purchase_id'] = $str;
-        $requestData['supplier_name'] = $request->supplier_name;
+        $requestData['supplier_id'] = $request->supplier_id;
 
         $grand_total = 0;
         $l = 0;
