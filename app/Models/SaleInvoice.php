@@ -26,7 +26,7 @@ class SaleInvoice extends Model
      *
      * @var array
      */
-    protected $fillable = ['sale_id', 'sale_no', 'date', 'payment_type', 'total', 'discount', 'paid', 'due', 'status'];
+    protected $fillable = ['sale_id', 'sale_no', 'sale_invoice_no', 'date', 'payment_type', 'total', 'discount', 'paid', 'due', 'status'];
 
     public function saleInvoiceDetails()
     {

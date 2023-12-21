@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Sale Invoice</div>
                     <div class="card-body">
@@ -31,6 +31,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Sale ID</th>
+                                        <th>Sale Invoice ID</th>
                                         <th>Customer</th>
                                         <th>Date</th>
                                         <th>Payment Type</th>
@@ -46,6 +47,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->sale_no }}</td>
+                                            <td>{{ $item->sale_invoice_no }}</td>
                                             <td>{{ (isset($item->customerDetails)) ? $item->customerDetails->name : '' }}</td>
                                             <td>{{ $item->date }}</td>
                                             <td>{{ $item->payment_type }}</td>

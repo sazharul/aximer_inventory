@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CashCollection;
 use App\Models\Sale;
 use App\Models\SaleInvoice;
 use App\Models\SaleInvoiceDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SaleInvoiceController extends Controller
@@ -26,6 +28,13 @@ class SaleInvoiceController extends Controller
                 'due' => $find_sale_invoice->due - $pay
             ]);
         }
+
+        CashCollection::create([
+            'date' => Carbon::now(),
+            'customer_id' => isset($find_sale_invoice->customerDetails) ? $find_sale_invoice->customerDetails->id : 0,
+            'sale_invoice_id' => $find_sale_invoice->id,
+            'amount' => $pay,
+        ]);
 
         return redirect()->back()->with('flash_message', 'Paid Successfully');
     }
@@ -80,9 +89,17 @@ class SaleInvoiceController extends Controller
 
         $find_sale = Sale::where('id', $request->sale_id)->first();
 
+        $str = SaleInvoice::orderBy('id', 'desc')->first();
+        if (isset($str)) {
+            $str = $str->sale_invoice_id + 1;
+        } else {
+            $str = date('y') . date('m') . str_pad(1, 4, "0", STR_PAD_LEFT);
+        }
+
         $sale_invoice = SaleInvoice::create([
             'sale_id' => $find_sale->id,
             'sale_no' => $find_sale->sale_id,
+            'sale_invoice_no' => $str,
             'date' => $request->date,
             'payment_type' => $request->payment_type,
             'total' => $find_sale->total,
@@ -100,6 +117,15 @@ class SaleInvoiceController extends Controller
                 'qty' => $item->qty,
                 'price' => $item->price,
                 'total' => $item->total,
+            ]);
+        }
+
+        if ($request->paid_amount > 0) {
+            CashCollection::create([
+                'date' => Carbon::now(),
+                'customer_id' => $find_sale->customer_id,
+                'sale_invoice_id' => $sale_invoice->id,
+                'amount' => $request->paid_amount,
             ]);
         }
 
@@ -153,6 +179,24 @@ class SaleInvoiceController extends Controller
             'discount' => $request->discount_amount,
             'due' => $saleinvoice->total - $request->discount_amount - $request->paid_amount,
         ]);
+
+        if ($request->paid_amount > 0) {
+            $cash_collection = CashCollection::where('sale_invoice_id', $saleinvoice->id)->first();
+            if (isset($cash_collection)) {
+                $cash_collection->update([
+                    'date' => Carbon::now(),
+                    'amount' => $request->paid_amount,
+                ]);
+            } else {
+                CashCollection::create([
+                    'date' => Carbon::now(),
+                    'customer_id' => isset($saleinvoice->customerDetails) ? $saleinvoice->customerDetails->id : 0,
+                    'sale_invoice_id' => $saleinvoice->id,
+                    'amount' => $request->paid_amount,
+                ]);
+            }
+
+        }
 
         return redirect('sale-invoice')->with('flash_message', 'SaleInvoice updated!');
     }

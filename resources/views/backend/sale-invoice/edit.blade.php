@@ -84,7 +84,7 @@
                                         <tr>
                                             <td>Discount Amount</td>
                                             <td>
-                                                <input min="1" required style="width: 150px;" class="form-control textAlignRight discount_amount"
+                                                <input min="0" required style="width: 150px;" class="form-control textAlignRight discount_amount"
                                                        onkeyup="PaidAmount(this)" name="discount_amount" type="number" value="{{ $saleinvoice->discount }}">
                                             </td>
                                         </tr>
@@ -92,7 +92,7 @@
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td>
-                                                <input min="1" required style="width: 150px;" max="{{ $saleinvoice->total }}" value="{{ $saleinvoice->paid }}"
+                                                <input min="0" required style="width: 150px;" max="{{ $saleinvoice->total }}" value="{{ $saleinvoice->paid }}"
                                                        class="form-control textAlignRight paid_amount"
                                                        onkeyup="PaidAmount(this)" name="paid_amount" type="number">
                                             </td>

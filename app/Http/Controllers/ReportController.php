@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CashCollection;
 use App\Models\Customer;
 use App\Models\Expense;
 use App\Models\Sale;
@@ -11,6 +12,30 @@ use Illuminate\Http\Request;
 class ReportController extends Controller
 {
     //
+    public function cash_collection_report(Request $request)
+    {
+        $data['start_date'] = $start_date = $request->get('start_date');
+        $data['end_date'] = $end_date = $request->get('end_date');
+        $perPage = 20;
+
+        $cash_collection_list = CashCollection::where(function ($query) use ($start_date) {
+            if (isset($start_date)) {
+                $query->whereDate('created_at', '>=', $start_date);
+            }
+        })
+            ->where(function ($query) use ($end_date) {
+                if (isset($end_date)) {
+                    $query->whereDate('created_at', '<=', $end_date);
+                }
+            });
+
+
+        $data['cash_collection_total'] = $cash_collection_list->sum('amount');
+        $data['cash_collection'] = $cash_collection_list->latest()->paginate($perPage);
+
+        return view('backend.report.cash_collection_report', $data);
+    }
+
     public function customer_invoice_list(Request $request, $id)
     {
         $perPage = 20;

@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('expense-report', [ReportController::class, 'expense_report'])->name('expense_report');
     Route::get('customer-outstanding-report', [ReportController::class, 'customer_outstanding_report'])->name('customer_outstanding_report');
     Route::get('customer-invoice-list/{id}', [ReportController::class, 'customer_invoice_list'])->name('customer_invoice_list');
+    Route::get('cash-collection-report', [ReportController::class, 'cash_collection_report'])->name('cash_collection_report');
 
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
     Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');

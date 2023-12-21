@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('sale_id');
             $table->string('sale_no');
+            $table->string('sale_invoice_no');
             $table->string('date');
             $table->string('payment_type');
             $table->string('total');
