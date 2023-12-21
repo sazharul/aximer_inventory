@@ -16,6 +16,7 @@ class CreatePurchaseInvoicesTable extends Migration
             $table->increments('id');
             $table->string('purchase_id');
             $table->string('purchase_no');
+            $table->string('purchase_invoice_no');
             $table->string('date');
             $table->string('payment_type');
             $table->string('total');

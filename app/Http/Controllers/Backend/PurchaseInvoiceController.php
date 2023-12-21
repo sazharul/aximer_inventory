@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\PayPurchase;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseInvoice;
 use App\Models\PurchaseInvoiceDetail;
 use App\Models\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PurchaseInvoiceController extends Controller
@@ -19,6 +21,29 @@ class PurchaseInvoiceController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    public function pay_purchase_due(Request $request, $id)
+    {
+        $pay = $request->payment_amount;
+        $find_purchase_invoice = PurchaseInvoice::where('id', $id)->first();
+
+        if (isset($find_purchase_invoice)) {
+            $find_purchase_invoice->update([
+                'paid' => $find_purchase_invoice->paid + $pay,
+                'due' => $find_purchase_invoice->due - $pay
+            ]);
+        }
+
+        PayPurchase::create([
+            'date' => Carbon::now(),
+            'supplier_id' => isset($find_purchase_invoice->supplierDetails) ? $find_purchase_invoice->supplierDetails->id : 0,
+            'purchase_invoice_id' => $find_purchase_invoice->id,
+            'amount' => $pay,
+        ]);
+
+        return redirect()->back()->with('flash_message', 'Paid Successfully');
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -62,9 +87,17 @@ class PurchaseInvoiceController extends Controller
 
         $find_purchase = Purchase::where('id', $request->purchase_id)->first();
 
+        $str = PurchaseInvoice::orderBy('id', 'desc')->first();
+        if (isset($str)) {
+            $str = $str->purchase_invoice_no + 1;
+        } else {
+            $str = date('y') . date('m') . str_pad(1, 4, "0", STR_PAD_LEFT);
+        }
+
         $purchase_invoice = PurchaseInvoice::create([
             'purchase_id' => $find_purchase->id,
             'purchase_no' => $find_purchase->purchase_id,
+            'purchase_invoice_no' => $str,
             'date' => $request->date,
             'payment_type' => $request->payment_type,
             'total' => $find_purchase->total,

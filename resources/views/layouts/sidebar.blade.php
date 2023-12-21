@@ -154,8 +154,9 @@
                             <li><a href="{{ route('expense_report') }}">Expense Report</a></li>
                             <li><a href="{{ route('customer_outstanding_report') }}">Customer Outstanding</a></li>
                             <li><a href="{{ route('cash_collection_report') }}">Cash Collection Report</a></li>
-                            <li><a href="#">Supplier Statement</a></li>
-                            <li><a href="#">Purchase Report</a></li>
+                            <li><a href="{{ route('supplier_outstanding_report') }}">Supplier Outstanding</a></li>
+                            <li><a href="{{ route('supplier_payment_report') }}">Supplier Payment Report</a></li>
+                            <li><a href="{{ route('daily_cash_closing') }}">Daily Cash Closing</a></li>
                         </ul>
                     </li>
                 </ul>

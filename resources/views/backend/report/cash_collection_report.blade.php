@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Cash Collection Report</div>
                     <div class="card-body">
-                        <form method="GET" action="{{ url('/cash-collection-report') }}" accept-charset="UTF-8"
+                        <form method="GET" action="{{ url('/supplier-payment-report') }}" accept-charset="UTF-8"
                               class="form-inline my-2 my-lg-0 float-right" role="search"
                               style="display: inline-block;">
                             <div class="row">
@@ -40,8 +40,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Date</th>
-                                        <th>Customer Name</th>
-                                        <th>Sale Invoice ID</th>
+                                        <th>Supplier Name</th>
+                                        <th>Purchase Invoice ID</th>
                                         <th>Amount</th>
                                     </tr>
                                 </thead>
@@ -50,8 +50,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{  \Carbon\Carbon::parse($item->date)->format('d-m-Y H:i a') }}</td>
-                                            <td>{{ isset($item->customerInfo) ? $item->customerInfo->name : '' }}</td>
-                                            <td>{{ isset($item->saleInvoiceInfo) ? $item->saleInvoiceInfo->sale_invoice_no : '' }}</td>
+                                            <td>{{ isset($item->supplierInfo) ? $item->supplierInfo->name : '' }}</td>
+                                            <td>{{ isset($item->purchaseInvoiceInfo) ? $item->purchaseInvoiceInfo->purchase_invoice_no : '' }}</td>
                                             <td>{{ $item->amount }}</td>
                                         </tr>
                                     @endforeach

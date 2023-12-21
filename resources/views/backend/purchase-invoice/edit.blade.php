@@ -83,7 +83,8 @@
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td>
-                                                <input min="1" required style="width: 150px;" max="{{ $purchaseinvoice->total }}" value="{{ $purchaseinvoice->paid }}" class="form-control textAlignRight paid_amount"
+                                                <input min="0" required style="width: 150px;" max="{{ $purchaseinvoice->total }}"
+                                                       value="{{ $purchaseinvoice->paid }}" class="form-control textAlignRight paid_amount"
                                                        onkeyup="PaidAmount(this)" name="paid_amount" type="number">
                                             </td>
                                         </tr>
@@ -93,7 +94,9 @@
                                             <td>
                                                 <select class="form-control" name="payment_type" required>
                                                     <option value="Cash" {{ $purchaseinvoice->payment_type === 'Cash' ? 'selected' : '' }}>Cash</option>
-                                                    <option value="Bank Transfer" {{ $purchaseinvoice->payment_type === 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
+                                                    <option value="Bank Transfer" {{ $purchaseinvoice->payment_type === 'Bank Transfer' ? 'selected' : '' }}>
+                                                        Bank Transfer
+                                                    </option>
                                                 </select>
                                             </td>
                                         </tr>

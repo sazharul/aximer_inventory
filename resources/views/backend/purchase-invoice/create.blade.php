@@ -88,8 +88,8 @@
                                         <tr>
                                             <td>Paid Amount</td>
                                             <td>
-                                                <input min="1" required style="width: 150px;" class="form-control textAlignRight paid_amount"
-                                                       onkeyup="PaidAmount(this)" name="paid_amount" type="number">
+                                                <input min="0" required style="width: 150px;" class="form-control textAlignRight paid_amount"
+                                                       onkeyup="PaidAmount(this)" name="paid_amount" type="number" value="0">
                                             </td>
                                         </tr>
 

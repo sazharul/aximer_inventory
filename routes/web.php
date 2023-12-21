@@ -4,6 +4,8 @@ use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PurchaseInvoiceController;
 use App\Http\Controllers\Backend\StockController;
+use App\Http\Controllers\DailCashReportController;
+use App\Http\Controllers\DailyCashReportController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleInvoiceController;
@@ -55,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('purchase', PurchaseController::class);
     Route::resource('purchase-invoice', PurchaseInvoiceController::class);
+    Route::post('pay_purchase_due/{id}', [PurchaseInvoiceController::class, 'pay_purchase_due'])->name('pay_purchase_due');
     Route::get('get-single-product/{id}', [ProductController::class, 'get_single_product']);
     Route::get('get-single-purchase-details/{id}', [PurchaseController::class, 'get_single_purchase']);
 
@@ -77,11 +80,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('expense', ExpenseController::class);
     Route::resource('stock', StockController::class);
 
+    Route::get('daily-cash-closing', [DailyCashReportController::class, 'daily_cash_closing'])->name('daily_cash_closing');
+
     Route::get('stock-report', [StockReportController::class, 'stock_report'])->name('product_stock');
     Route::get('expense-report', [ReportController::class, 'expense_report'])->name('expense_report');
+
     Route::get('customer-outstanding-report', [ReportController::class, 'customer_outstanding_report'])->name('customer_outstanding_report');
     Route::get('customer-invoice-list/{id}', [ReportController::class, 'customer_invoice_list'])->name('customer_invoice_list');
     Route::get('cash-collection-report', [ReportController::class, 'cash_collection_report'])->name('cash_collection_report');
+
+    Route::get('supplier-outstanding-report', [ReportController::class, 'supplier_outstanding_report'])->name('supplier_outstanding_report');
+    Route::get('supplier-invoice-list/{id}', [ReportController::class, 'supplier_invoice_list'])->name('supplier_invoice_list');
+    Route::get('supplier-payment-report', [ReportController::class, 'supplier_payment_report'])->name('supplier_payment_report');
 
     Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
     Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');
