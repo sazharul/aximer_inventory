@@ -2,9 +2,12 @@
 <div class="sidebar-wrapper">
     <div id="sidebarEffect"></div>
     <div>
+        @php
+            $setting = \App\Models\Setting::first();
+        @endphp
         <div class="logo-wrapper logo-wrapper-center">
             <a href="#" data-bs-original-title="" title="">
-                <img class="img-fluid for-white" style="height: 45px;" src="{{ asset('assets/images/logo/logo_medisource.png') }}" alt="logo">
+                <img class="img-fluid for-white" style="height: 45px;" src="{{ asset( (isset($setting)) ? $setting->logo : '') }}" alt="logo">
             </a>
             <div class="back-btn">
                 <i class="fa fa-angle-left"></i>
@@ -15,8 +18,8 @@
         </div>
         <div class="logo-icon-wrapper">
             <a href="#">
-                <img class="img-fluid main-logo main-white" src="{{ asset('assets/images/logo/logo_medisource.png') }}" alt="logo">
-                <img class="img-fluid main-logo main-dark" src="{{ asset('assets/images/logo/logo_medisource.png') }}"
+                <img class="img-fluid main-logo main-white" src="{{ asset( (isset($setting)) ? $setting->logo : '') }}" alt="logo">
+                <img class="img-fluid main-logo main-dark" src="{{ asset( (isset($setting)) ? $setting->logo : '') }}"
                      alt="logo">
             </a>
         </div>
@@ -157,8 +160,21 @@
                             <li><a href="{{ route('supplier_outstanding_report') }}">Supplier Outstanding</a></li>
                             <li><a href="{{ route('supplier_payment_report') }}">Supplier Payment Report</a></li>
                             <li><a href="{{ route('daily_cash_closing') }}">Daily Cash Closing</a></li>
+                            <li><a href="{{ route('purchase_report') }}">Purchase Report List</a></li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-list">
+                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-store-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            {{--                            <li><a href="{{ route('expense_report') }}">Change Password</a></li>--}}
+                            <li><a href="{{ route('settings.index') }}">Manage Logo</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
 

@@ -126,7 +126,9 @@
 @endsection
 @section('content')
     <div class="container">
-
+        @php
+            $setting = \App\Models\Setting::first();
+        @endphp
         <div class="row justify-content-center">
             <div class="col-md-7">
                 <a href="{{ url()->previous() }}" class="btn btn-dark">Back</a>
@@ -136,14 +138,14 @@
                         <div style="text-align: center; margin: auto;line-height: 1.5;font-size: 14px;color: #4a4a4a;">
 
                             <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 18px;">
-                                <img style="width: 30%" src="{{ asset('assets/images/logo/Traced Image 1.png') }}" alt="">
+                                <img style="width: 30%" src="{{ asset( (isset($setting)) ? $setting->logo : '') }}" alt="">
                             </p>
-                            <p style="margin: 15px auto;">House-44, Road-11, Kallyanpur, Dhaka.</p>
-                            <p>Mobile.01330801063 .E-mail :medisource.ecommerce@gmail.com.</p>
+                            <p style="margin: 15px auto;">{{ isset($setting) ? $setting->address : '' }}</p>
+                            <p>Mobile. {{ isset($setting) ? $setting->mobile : '' }} .E-mail : {{ isset($setting) ? $setting->email : '' }}</p>
 
                             <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
                         </div>
-                        <p><span><b>Order id: </b> {{ $purchaseinvoice->purchase_no }}</span> <span style="float: right"><b>Date : </b> {{ $purchaseinvoice->created_at->format('d/m/Y') }}</span>
+                        <p><span><b>Purchase id: </b> {{ $purchaseinvoice->purchase_no }}</span> <span style="float: right"><b>Date : </b> {{ \Carbon\Carbon::parse($purchaseinvoice->date)->format('d/m/Y') }}</span>
                         </p>
                         <table class="table table-bordered invoice_item_table">
                             <thead>
@@ -173,19 +175,17 @@
                         <table style="width: 100%;margin-top: 15px;border: 1px dashed #dddddd;border-radius: 3px;">
                             <thead>
                                 <tr>
-                                    <td><b>Supplier Details</b></td>
-                                    <td style="text-align: right;"><b>Amount : </b> {{ $purchaseinvoice->total }} TK.</td>
-                                </tr>
-                                <tr>
                                     <td>
-                                        <b>
-                                            <br>
-{{--                                            <b>Area : </b>{{ $order->user_info->area->name }} <br>--}}
+                                        <b>Name : </b>{{ isset($purchaseinvoice->supplierDetails) ? $purchaseinvoice->supplierDetails->name : '' }} <br>
+                                        <b>Phone : </b>{{ isset($purchaseinvoice->supplierDetails) ? $purchaseinvoice->supplierDetails->phone_number : '' }} <br>
+                                        <b>Email : </b>{{ isset($purchaseinvoice->supplierDetails) ? $purchaseinvoice->supplierDetails->email : '' }} <br>
+                                        <b>Address : </b>{{ isset($purchaseinvoice->supplierDetails) ? $purchaseinvoice->supplierDetails->address : '' }} <br>
 
                                     </td>
                                     <td style="text-align: right;">
-{{--                                        <b>Discount : </b>{{ $order->discount }} TK.<br>--}}
-{{--                                        <b>Total Pay : </b>{{ $order->total }} TK.<br>--}}
+                                        <b>Amount : </b> {{ $purchaseinvoice->total }} TK. <br>
+                                        <b>Paid : </b> {{ $purchaseinvoice->paid }} TK. <br>
+                                        <b>Due : </b> {{ $purchaseinvoice->due }} TK. <br>
                                     </td>
                                 </tr>
                             </thead>
@@ -207,7 +207,7 @@
 
                                 <tr>
                                     <td>
-                                        ৩. ডেলিভারি সম্পর্কিত কোন অভিযোগ বা পরামর্শ থাকলে এই নম্বর এ (01330801063) যোগাযোগ করুন।
+                                        ৩. ডেলিভারি সম্পর্কিত কোন অভিযোগ বা পরামর্শ থাকলে এই নম্বর এ ({{ isset($setting) ? $setting->mobile : '' }}) যোগাযোগ করুন।
                                     </td>
                                 </tr>
 

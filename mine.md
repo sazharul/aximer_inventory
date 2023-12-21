@@ -14,3 +14,4 @@ php artisan crud:generate ExpenseCategory --fields="name#string#required; status
 php artisan crud:generate Expense --fields="category_id#string#required; amount#string#required; note#text#required; status#string#required" --view-path=backend --controller-namespace="Backend"
 
 php artisan crud:generate Stock --fields="product_id#string#required; purchase_id#string#required; purchase_no#string#required; qty#text#required;" --view-path=backend --controller-namespace="Backend"
+php artisan crud:generate Settings --fields="title#string#required; logo#file#required;" --view-path=backend --controller-namespace="Backend"

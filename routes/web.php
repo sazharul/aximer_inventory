@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\PurchaseInvoiceController;
+use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\StockController;
 use App\Http\Controllers\DailCashReportController;
 use App\Http\Controllers\DailyCashReportController;
@@ -79,11 +80,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('expense-category', ExpenseCategoryController::class);
     Route::resource('expense', ExpenseController::class);
     Route::resource('stock', StockController::class);
+    Route::resource('settings', SettingsController::class);
 
     Route::get('daily-cash-closing', [DailyCashReportController::class, 'daily_cash_closing'])->name('daily_cash_closing');
 
     Route::get('stock-report', [StockReportController::class, 'stock_report'])->name('product_stock');
     Route::get('expense-report', [ReportController::class, 'expense_report'])->name('expense_report');
+
+    Route::get('purchase-report', [ReportController::class, 'purchase_report'])->name('purchase_report');
 
     Route::get('customer-outstanding-report', [ReportController::class, 'customer_outstanding_report'])->name('customer_outstanding_report');
     Route::get('customer-invoice-list/{id}', [ReportController::class, 'customer_invoice_list'])->name('customer_invoice_list');
@@ -93,32 +97,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('supplier-invoice-list/{id}', [ReportController::class, 'supplier_invoice_list'])->name('supplier_invoice_list');
     Route::get('supplier-payment-report', [ReportController::class, 'supplier_payment_report'])->name('supplier_payment_report');
 
-    Route::get('pending-order-list', [OrderController::class, 'pending_order_list'])->name('pending_order_list');
-    Route::get('approved-order-list', [OrderController::class, 'approved_order_list'])->name('approved_order_list');
-    Route::get('cancel-order-list', [OrderController::class, 'cancel_order_list'])->name('cancel_order_list');
-    Route::get('delivered-order-list', [OrderController::class, 'delivered_order_list'])->name('delivered_order_list');
-    Route::get('delivery-invoice', [OrderController::class, 'delivery_invoice'])->name('delivery_invoice');
-    Route::get('sold-product', [OrderController::class, 'sold_product'])->name('sold_product');
-
-    Route::get('approve/order/{id}', [OrderController::class, 'order_approve'])->name('order_approve');
-    Route::get('cancel/order/{id}', [OrderController::class, 'order_cancel'])->name('order_cancel');
-    Route::get('delivered/order/{id}', [OrderController::class, 'order_delivered'])->name('order_delivered');
-
-
-    Route::get('order-invoice/{id}', [OrderController::class, 'order_invoice'])->name('order_invoice');
-
-    Route::get('flash-sale', [OrderController::class, 'flash_sale'])->name('flash_sale');
-
-    Route::get('edit-flash-sale', [OrderController::class, 'flash_sale_edit'])->name('flash_sale_edit');
-    Route::post('update-flash-sale', [OrderController::class, 'update_flash_sale'])->name('update_flash_sale');
-
-    Route::get('add-flash-sale', [OrderController::class, 'add_flash_sale'])->name('add_flash_sale');
-    Route::post('save-flash-sale', [OrderController::class, 'save_flash_sale'])->name('save_flash_sale');
-
-    Route::get('remove-flash-sale/{id}', [OrderController::class, 'remove_flash_sale'])->name('remove_flash_sale');
-    Route::get('remove-all-flash-sale', [OrderController::class, 'remove_all_flash_sale'])->name('remove_all_flash_sale');
-
-    Route::get('pending-user-list', [HomeController::class, 'user_list'])->name('user_list');
-    Route::get('approved-user-list', [HomeController::class, 'approved_user_list'])->name('approved_user_list');
-    Route::get('approved-user/{id}', [HomeController::class, 'approved_user'])->name('approved_user');
 });

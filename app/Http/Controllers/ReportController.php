@@ -6,6 +6,7 @@ use App\Models\CashCollection;
 use App\Models\Customer;
 use App\Models\Expense;
 use App\Models\PayPurchase;
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseInvoice;
 use App\Models\Sale;
@@ -15,6 +16,22 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+
+    public function purchase_report(Request $request)
+    {
+        $data['category'] = $category = $request->get('category');
+        $data['start_date'] = $start_date = $request->get('start_date');
+        $data['end_date'] = $end_date = $request->get('end_date');
+
+        $data['products'] = Product::where('status', 1)
+            ->where(function ($query) use ($category) {
+                if (isset($category) && $category != 'All') {
+                    $query->where('category_id', $category);
+                }
+            })->paginate(20);
+
+        return view('backend.report.purchase_report', $data);
+    }
 
     public function supplier_payment_report(Request $request)
     {

@@ -4,8 +4,11 @@
     <div class="container">
         <div class="frame">
             <div class="nav">
+                @php
+                    $setting = \App\Models\Setting::first();
+                @endphp
                 <div style="width: 100%; text-align: center">
-                    <img style="width: 60%;" src="{{ asset('assets/images/logo/logo_medisource.png') }}" alt="">
+                    <img style="width: 60%;" src="{{ asset( (isset($setting)) ? $setting->logo : '') }}" alt="">
                 </div>
                 <ul class="links">
                     <li class="signin-active"><a class="btn">Login in</a></li>
