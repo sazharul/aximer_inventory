@@ -4,36 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Expense;
+use App\Models\Sale;
+use App\Models\SaleInvoice;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
     //
+    public function customer_invoice_list(Request $request, $id)
+    {
+        $perPage = 20;
+        $sale = Sale::where('customer_id', $id)->pluck('id');
+        $data['saleinvoice'] = SaleInvoice::whereIn('sale_id', $sale)->paginate($perPage);
+
+        return view('backend.report.customer_invoice_list', $data);
+    }
+
     public function customer_outstanding_report(Request $request)
     {
-        $start_date = $request->get('start_date');
-        $end_date = $request->get('end_date');
         $customer_name = $request->get('customer');
+        $data['start_date'] = $request->get('start_date');
+        $data['end_date'] = $request->get('end_date');
+
         $perPage = 20;
 
-        $customer = Customer::with('saleInvoice')
-            ->where(function ($query) use ($customer_name) {
-                if (isset($customer_name) && $customer_name != 'All') {
-                    $query->where('name', $customer_name);
-                }
-            })
-            ->whereHas('saleInvoice', function ($query) use ($start_date, $end_date) {
-                $query->whereHas('saleInvoice', function ($q) use ($start_date, $end_date) {
-                    if (isset($start_date)) {
-                        $q->whereDate('created_at', '>=', $start_date);
-                    }
-                    if (isset($end_date)) {
-                        $q->whereDate('created_at', '<=', $end_date);
-                    }
-                });
-            });
-
-        $data['customer'] = $customer->paginate($perPage);
+        $data['customer'] = Customer::where(function ($query) use ($customer_name) {
+            if (isset($customer_name) && $customer_name != 'All') {
+                $query->where('name', $customer_name);
+            }
+        })->paginate($perPage);
 
         return view('backend.report.customer_outstanding_report', $data);
     }

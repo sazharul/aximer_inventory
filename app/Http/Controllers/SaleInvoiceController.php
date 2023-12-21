@@ -27,7 +27,7 @@ class SaleInvoiceController extends Controller
             ]);
         }
 
-        return redirect('sale-invoice')->with('flash_message', 'Paid Successfully');
+        return redirect()->back()->with('flash_message', 'Paid Successfully');
     }
 
     public function index(Request $request)

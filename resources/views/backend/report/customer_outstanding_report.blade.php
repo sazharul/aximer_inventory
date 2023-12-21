@@ -63,16 +63,39 @@
                                 </thead>
                                 <tbody>
                                     @foreach($customer as $item)
+                                        @php
+                                            $sale = \App\Models\Sale::where('customer_id', $item->id)->pluck('id');
+                                            $sale_invoice = \App\Models\SaleInvoice::where(function ($query) use ($sale) {
+                                                    if (isset($sale)) {
+                                                        $query->whereIn('sale_id', $sale);
+                                                    }
+                                                })
+                                                ->where(function ($query) use ($start_date) {
+                                                    if (isset($start_date)) {
+                                                        $query->whereDate('created_at', '>=', $start_date);
+                                                    }
+                                                })
+                                                ->where(function ($query) use ($end_date) {
+                                                    if (isset($end_date)) {
+                                                        $query->whereDate('created_at', '<=', $end_date);
+                                                    }
+                                                });
+
+                                            $total_sale = $sale_invoice->sum('total');
+                                            $total_discount = $sale_invoice->sum('discount');
+                                            $total_paid = $sale_invoice->sum('paid');
+                                            $total_due = $sale_invoice->sum('due');
+                                        @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->phone_number }}</td>
-                                            <td>{{ (isset($item->saleInvoiceInfo)) ? $item->saleInvoiceInfo->sum('total') : 0 }}</td>
-                                            <td>{{ (isset($item->saleInvoiceInfo)) ? $item->saleInvoiceInfo->sum('discount') : 0 }}</td>
-                                            <td>{{ (isset($item->saleInvoiceInfo)) ? $item->saleInvoiceInfo->sum('paid') : 0 }}</td>
-                                            <td>{{ (isset($item->saleInvoiceInfo)) ? $item->saleInvoiceInfo->sum('due') : 0 }}</td>
+                                            <td>{{ $total_sale }}</td>
+                                            <td>{{ $total_discount }}</td>
+                                            <td>{{ $total_paid }}</td>
+                                            <td>{{ $total_due }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-sm">All Sale Invoice</a>
+                                                <a href="{{ route('customer_invoice_list', $item->id) }}" class="btn btn-primary btn-sm">All Sale Invoice</a>
                                             </td>
                                         </tr>
                                     @endforeach

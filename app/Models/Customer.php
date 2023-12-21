@@ -26,7 +26,7 @@ class Customer extends Model
     }
 
 
-    public function saleInvoice()
+    public function saleInfo()
     {
         return $this->hasMany(Sale::class, 'customer_id', 'id');
         //return $this->hasMany(SaleInvoiceDetail::class, 'sale_invoices_id', 'id');
