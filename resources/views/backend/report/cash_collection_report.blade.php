@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Cash Collection Report</div>
+                    <div class="card-header">Supplier Payment Report</div>
                     <div class="card-body">
                         <form method="GET" action="{{ url('/supplier-payment-report') }}" accept-charset="UTF-8"
                               class="form-inline my-2 my-lg-0 float-right" role="search"
@@ -30,7 +30,7 @@
                             </div>
                         </form>
                         <div class="box_expense">
-                            <h3><b>Total Collection: </b> {{ $cash_collection_total ?? 0 }}</h3>
+                            <h3><b>Total Payment: </b> {{ $cash_collection_total ?? 0 }}</h3>
                         </div>
                         <br/>
                         <br/>

@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Investor</div>
                     <div class="card-body">
                      <a href="{{ url('/investor/create') }}" class="btn btn-success btn-sm" title="Add New Investor">
-                           <i class="fa fa-plus" aria-hidden="true"></i> Add New 
+                           <i class="fa fa-plus" aria-hidden="true"></i> Add New
                        </a>
 
 {{--                        <form method="GET" action="{{ url('/investor') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search"--}}
@@ -32,6 +32,10 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Invest Amount</th>
+                                    <th>Current Rate Per Percentage</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -41,6 +45,10 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->investor_name }}</td>
                                         <td>{{ $item->phone_number}}</td>
+                                        <td>{{ $item->email}}</td>
+                                        <td>{{ $item->address}}</td>
+                                        <td>{{ $item->amount}}</td>
+                                        <td>{{ $item->per_percentage}}</td>
                                         <td>
 
                                             <a href="{{ url('/investor/' . $item->id . '/edit') }}" title="Edit investor">

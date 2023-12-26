@@ -24,7 +24,7 @@
                                     </tr>
                                     <tr>
                                         <th> Supplier Name</th>
-                                        <td> {{ $purchase->supplier_name }} </td>
+                                        <td> {{ (isset($purchase->supplierDetails)) ? $purchase->supplierDetails->name : "" }} </td>
                                     </tr>
                                 </tbody>
                             </table>

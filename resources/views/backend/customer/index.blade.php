@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Customer</div>
                     <div class="card-body">
@@ -33,7 +33,9 @@
                                         <th>Name</th>
                                         <th>Phone Number</th>
                                         <th>Email</th>
+                                        <th>Address</th>
                                         <th>Contact Person</th>
+                                        <th>Origin</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -45,7 +47,9 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->phone_number}}</td>
                                             <td>{{ $item->email}}</td>
+                                            <td>{{ $item->address}}</td>
                                             <td>{{ $item->contact_person}}</td>
+                                            <td>{{ $item->origin}}</td>
                                             <td>{{ $item->status == 1 ? 'Active' : 'InActive' }}</td>
                                             <td>
 

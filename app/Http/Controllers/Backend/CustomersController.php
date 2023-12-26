@@ -17,7 +17,7 @@ class CustomersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $customer = Customer::where('customer_name', 'LIKE', "%$keyword%")
+            $customer = Customer::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('phone_number', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
                 ->orWhere('contact_person', 'LIKE', "%$keyword%")

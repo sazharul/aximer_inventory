@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\CashCollection;
 use App\Models\PayPurchase;
 use App\Models\Product;
 use App\Models\Purchase;
@@ -117,6 +118,14 @@ class PurchaseInvoiceController extends Controller
             ]);
         }
 
+        if ($request->paid_amount > 0) {
+            PayPurchase::create([
+                'date' => Carbon::now(),
+                'supplier_id' => $find_purchase->supplier_id,
+                'purchase_invoice_id' => $purchase_invoice->id,
+                'amount' => $request->paid_amount,
+            ]);
+        }
 
         return redirect('purchase-invoice')->with('flash_message', 'PurchaseInvoice added!');
     }
@@ -166,6 +175,24 @@ class PurchaseInvoiceController extends Controller
             'paid' => $request->paid_amount,
             'due' => $purchaseinvoice->total - $request->paid_amount
         ]);
+
+        if ($request->paid_amount > 0) {
+            $cash_collection = PayPurchase::where('sale_invoice_id', $purchaseinvoice->id)->first();
+            if (isset($cash_collection)) {
+                $cash_collection->update([
+                    'date' => Carbon::now(),
+                    'amount' => $request->paid_amount,
+                ]);
+            } else {
+                PayPurchase::create([
+                    'date' => Carbon::now(),
+                    'supplier_id' => isset($purchaseinvoice->supplierDetails) ? $purchaseinvoice->supplierDetails->id : 0,
+                    'purchase_invoice_id' => $purchaseinvoice->id,
+                    'amount' => $request->paid_amount,
+                ]);
+            }
+
+        }
 
         return redirect('purchase-invoice')->with('flash_message', 'PurchaseInvoice updated!');
     }
